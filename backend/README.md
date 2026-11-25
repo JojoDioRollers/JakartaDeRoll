@@ -40,6 +40,16 @@ classDiagram
     }
     note for CharacterSheet "maybe storing the info that isn't the Character linked to it in json format is good for the bdd and then fill a CharacterSheet class on launch"
     class CharacterSheet{
+        -level : int
+        -stats : int[10]
+        -health : int[7]
+        -recovery : double
+        -physique : int[4]
+        -skills : Map<Skill.name> int
+    }
+    class Skill{
+        -name : String //serves as id
+        -stats : int[3]
     }
     Character "1\n-sheet" *-- "1" CharacterSheet
     Campaign "1" *-- "-campaign\n0..*" Session
