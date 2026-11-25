@@ -116,7 +116,7 @@ public class Event {
         str += "Event : " + this.name + "\n\nPlayed characters:\n";
 
         for (Character character : this.characters) {
-            if (character.getPlayer().equals(this.campaign.getGamemaster())) {
+            if (!character.getPlayer().equals(this.campaign.getGamemaster())) {
                 str += "- " + character.getName() + "\n";
             } else {
                 tmp.add(character);
