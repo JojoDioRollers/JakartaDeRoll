@@ -43,7 +43,7 @@ classDiagram
     }
     Character "1\n-sheet" *-- "1" CharacterSheet
     Campaign "1" *-- "-campaign\n0..*" Session
-    Event "1" *-- "0..*" Event
+    Event "-events\n1" *-- "0..*" Event
     Campaign "1" *-- "-campaign\n0..*" Event
     Session "0..*" -- "0..*" Event
     Campaign "0..*" -- "1..*" Player
