@@ -27,7 +27,7 @@ classDiagram
         +addChars(List of Characters : characters)
         +addEvent(String : name)
         +getInvolved() List of characters
-        +toString String // name then Characters involved, PC and NPC separated then description 
+        +toString() String // name then Characters involved, PC and NPC separated then description 
     }
     class Player{
         -name : String // alias e.g. sorcero
