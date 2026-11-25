@@ -62,6 +62,7 @@ classDiagram
     Event "0..*" -- "0..*" Character
     Session "0..*" -- "1..*" Player
     Character --> Roll
+    CharacterSheet --> Skill
 
     class Roll{
         <<Interface>>
