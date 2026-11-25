@@ -42,7 +42,8 @@ classDiagram
     class CharacterSheet{
         -level : int
         -stats : int[10]
-        -health : int[7]
+        -res : int[5]
+        -health : int[3]
         -recovery : double
         -physique : int[4]
         -skills : Map<Skill.name> int
@@ -61,12 +62,45 @@ classDiagram
     Campaign "1" *-- "-campaign\n0..*" Character
     Event "0..*" -- "0..*" Character
     Session "0..*" -- "1..*" Player
-    Character --> Roll
     CharacterSheet --> Skill
 
     class Roll{
         <<Interface>>
         +roll() int
     }
+    class Roll_OE{
+        +roll() int //1d100, open ended
+    }
+    class Roll_Sup{
+        +roll() int //1d100, open ended to +inf 
+    }
+    class Roll_100{
+        +roll() int //1d100
+    }
+    class Roll_10{
+        +roll() int //1d10
+    }
+    class Roll_Dice{
+        -int : faces
+        +roll() int //1d<x>, <x> = faces
+    }
+    class Roll_Skill{
+        -bonus : int // calc with args in the creator
+        +roll() int // OE + bonus
+        +Roll_Skill(Character : character, Skill : skill) // to calc bonus
+    }
+    class Roll_RR{
+        -bonus : int
+        +roll() int // OE + bonus
+        +Roll_RR(Character : character,int : res_type)
+    }
+    class Roll_Endu{
+        -bonus : int
+        +roll() int // Roll_Skill for endurance + bonus
+        +Roll_Endu(Character : character)
+    }
+
+    Character --> Roll
+    
     note for Roll "roll function will work differently depending on what kind of Roll it is"
 ```
