@@ -25,7 +25,7 @@ classDiagram
         +Event(String : name, Campaign : campaign)
         +addSession(Session : session)
         +addChars(List of Characters : characters)
-        +addEvent(String : name)
+        +addEvent(String : name) // calls Event(name,this.campaign)
         +getInvolved() List of characters
         +toString() String // name then Characters involved, PC and NPC separated then description 
     }
