@@ -113,6 +113,7 @@ classDiagram
     Roll <|.. Roll_Skill
     Roll <|.. Roll_RR
     Roll <|.. Roll_Endu
+    Roll <|.. Roll_Init
     Roll_Endu --> Roll_Skill
     Roll_Skill --> Roll_OE
     Roll_RR --> Roll_OE
