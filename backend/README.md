@@ -120,5 +120,10 @@ classDiagram
     Roll_OE --> Roll_Sup
     Roll_Sup --> Roll_100
     Roll_Init --> Roll_10
+    Roll_Skill --> Skill
+    Roll_Skill --> Character
+    Roll_Init --> Character
+    Roll_Endu --> Character
+    Roll_RR --> Character
     note for Roll "roll function will work differently depending on what kind of Roll it is"
 ```
