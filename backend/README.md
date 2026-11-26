@@ -87,20 +87,37 @@ classDiagram
     class Roll_Skill{
         -bonus : int // calc with args in the creator
         +roll() int // OE + bonus
-        +Roll_Skill(Character : character, Skill : skill) // to calc bonus
+        +Roll_Skill(Character : character, Skill : skill) int // to calc bonus
     }
     class Roll_RR{
         -bonus : int
         +roll() int // OE + bonus
-        +Roll_RR(Character : character,int : res_type)
+        +Roll_RR(Character : character, int : res_type)
     }
     class Roll_Endu{
         -bonus : int
         +roll() int // Roll_Skill for endurance + bonus
-        +Roll_Endu(Character : character)
+        +Roll_Endu(Character : character) int
     }
-
+    class Roll_Init{
+        -bonus : int
+        +roll() // 2d10 + bonus:
+        +Roll_Init(Character : character) int
+    }
     Character --> Roll
-    
+    Roll <|.. Roll_OE
+    Roll <|.. Roll_Sup
+    Roll <|.. Roll_100
+    Roll <|.. Roll_10
+    Roll <|.. Roll_Dice
+    Roll <|.. Roll_Skill
+    Roll <|.. Roll_RR
+    Roll <|.. Roll_Endu
+    Roll_Endu --> Roll_Skill
+    Roll_Skill --> Roll_OE
+    Roll_RR --> Roll_OE
+    Roll_OE --> Roll_Sup
+    Roll_Sup --> Roll_100
+    Roll_Init --> Roll_10
     note for Roll "roll function will work differently depending on what kind of Roll it is"
 ```
