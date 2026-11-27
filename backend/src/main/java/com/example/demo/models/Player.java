@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-package com.example.demo;
-
-public class Player {
-
-    // Attributs
-    private String name;
-    private Campaign campaign;
-
-    // Constructeur
-=======
 package com.example.demo.models;
 
 import java.util.Set;
@@ -50,7 +39,6 @@ public class Player {
      * @param name Player's name
      * @param campaign Campaign the player is in
      */
->>>>>>> origin/rework
     public Player(String name, Campaign campaign) {
 
         if (campaign == null) {
@@ -61,27 +49,6 @@ public class Player {
         this.campaign = campaign;
     }
 
-<<<<<<< HEAD
-    // Getters
-    public String getName() {
-        return name;
-    }
-
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    // Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                '}';
-=======
     @Override
     /**    (non-Javadoc)
      * Redefining toString method
@@ -89,6 +56,5 @@ public class Player {
      */
     public String toString() {
         return "Player name : " + name;
->>>>>>> origin/rework
     }
 }

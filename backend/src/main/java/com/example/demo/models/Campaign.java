@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package com.example.demo;
-
-public class Campaign {
-
-    // Attributs
-    private String name;
-    private Player gamemaster;
-    private String description;
-
-    // Constructeur
-=======
 package com.example.demo.models;
 
 import java.util.HashSet;
@@ -56,7 +44,6 @@ public class Campaign {
      * @param gamemaster gamemaster of the campaign
      * @param name name of the campaign
      */
->>>>>>> origin/rework
     public Campaign(Player gamemaster, String name) {
 
         if (gamemaster == null) {
@@ -68,57 +55,17 @@ public class Campaign {
         this.description = "";
     }
 
-<<<<<<< HEAD
-    // Getters
-    public String getName() {
-        return name;
-    }
-
-    public Player getGamemaster() {
-        return gamemaster;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    // Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void addPlayer(Campaign campaign, Player player) {
-=======
     /**
      * Adds a player to the campaign
      * @param player player to add
      */
     public void addPlayer(Player player) {
         //TODO addPlayer method
->>>>>>> origin/rework
     // Vérifier que le joueur n'est pas le MJ
     // Vérifier qu'il n'est pas déjà inscrit
     // Enregistrer l'association en BDD
     }
 
-<<<<<<< HEAD
-    public Player getPlayers(Campaign campaign) {
-    // Requête BDD pour récupérer les joueurs
-    // Exclure le gamemaster
-    }
-
-    @Override
-    public String toString() {
-        return "Campaign{" +
-                "name='" + name + '\'' +
-                ", gamemaster=" + gamemaster.getName() +
-                ", description='" + description + '\'' +
-                '}';
-=======
     /**
      * Returns all the player except the gamemaster
      * @return set of players
@@ -156,6 +103,5 @@ public class Campaign {
         
 
         return str;
->>>>>>> origin/rework
     }
 }
