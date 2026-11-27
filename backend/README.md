@@ -38,7 +38,6 @@ classDiagram
         -notes : Text
         +roll(Roll : type)
     }
-    Agility, Constitution, Empathy, Intuition, Memory, Presence, Quickness, Reasoning, Self-Discipline, Strength
     note for CharacterSheet "for base_stats and stats, an enum is needed to handle the index. Same for base_res and res.<br>the 10 stats are, in order : Agility, Constitution, Empathy, Intuition, Memory, Presence, Quickness, Reasoning, Self-Discipline and Strength<br>the  resistances are, in order: Physical, Fear, Channeling, Essence and Mentalism"
     class CharacterSheet{
         -level : int
