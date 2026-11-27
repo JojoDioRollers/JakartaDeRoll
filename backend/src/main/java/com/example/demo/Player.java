@@ -1,12 +1,44 @@
 package com.example.demo;
 
+import java.util.Set;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import lombok.Data;
+
+@Data 
+@Entity 
+/**
+ * Class for a human player
+ */
 public class Player {
 
-    // Attributs
-    private String name;
-    private Campaign campaign;
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int playerID; //< Player ID
 
-    // Constructeur
+    @Column 
+    private String name; //< Player name
+    
+    @ManyToMany
+    @JoinColumn(name="campaignID")
+    private Campaign campaign; //< The campaign the player is playing in
+
+    @ManyToMany
+    @JoinColumn(name="sessionID")
+    private Set<Session> sessions; //< All the sessions the player was in
+
+    /**
+     * Constructor for Player
+     * @param name Player's name
+     * @param campaign Campaign the player is in
+     */
     public Player(String name, Campaign campaign) {
 
         if (campaign == null) {
@@ -17,24 +49,12 @@ public class Player {
         this.campaign = campaign;
     }
 
-    // Getters
-    public String getName() {
-        return name;
-    }
-
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    // Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
+    /**    (non-Javadoc)
+     * Redefining toString method
+     * @see java.lang.Object#toString()
+     */
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Player name : " + name;
     }
 }
