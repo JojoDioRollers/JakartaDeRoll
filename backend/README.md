@@ -38,15 +38,30 @@ classDiagram
         -notes : Text
         +roll(Roll : type)
     }
-    note for CharacterSheet "maybe storing the info that isn't the Character linked to it in json format is good for the bdd and then fill a CharacterSheet class on launch"
+    Agility, Constitution, Empathy, Intuition, Memory, Presence, Quickness, Reasoning, Self-Discipline, Strength
+    note for CharacterSheet "for base_stats and stats, an enum is needed to handle the index. Same for base_res and res.<br>the 10 stats are, in order : Agility, Constitution, Empathy, Intuition, Memory, Presence, Quickness, Reasoning, Self-Discipline and Strength<br>the  resistances are, in order: Physical, Fear, Channeling, Essence and Mentalism"
     class CharacterSheet{
         -level : int
+        -base_stats : Stat[10]
+        -base_res : int[5]
+        -base_hits : int
+        -hits_current : int
+        -endurance : int
+        -recovery : double
+        -Size : int
+        -stride : int
+        -height : int // sadly, in inches
+        -weight : int // in pounds. sorry
+        -training : Map&lt;Skill.name&gt; int
+        // Derived values, not stored in database
+        -hits_max : int
         -stats : int[10]
         -res : int[5]
-        -health : int[3]
-        -recovery : double
-        -physique : int[4]
-        -skills : Map<Skill.name> int
+        -skills : Map&lt;Skill.name&gt; int
+    }
+    class Stat{
+        -potential : int
+        -current : int
     }
     class Skill{
         -name : String //serves as id
@@ -63,6 +78,7 @@ classDiagram
     Event "0..*" -- "0..*" Character
     Session "0..*" -- "1..*" Player
     CharacterSheet --> Skill
+    CharacterSheet --> Stat
 
     class Roll{
         <<Interface>>
@@ -82,7 +98,7 @@ classDiagram
     }
     class Roll_Dice{
         -int : faces
-        +roll() int //1d<x>, <x> = faces
+        +roll() int //1d&lt;x&gt;, &lt;x&gt; = faces
     }
     class Roll_Skill{
         -bonus : int // calc with args in the creator
@@ -96,7 +112,7 @@ classDiagram
     }
     class Roll_Endu{
         -bonus : int
-        +roll() int // Roll_Skill for endurance + bonus
+        +roll() int // Roll_Skill for body development + bonus (endurance)
         +Roll_Endu(Character : character) int
     }
     class Roll_Init{
