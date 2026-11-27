@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +9,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Data
 @Entity 
+/**
+ * Class for ingame events
+ */
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id; //< Event ID
+    private int eventID; //< Event ID
 
     @Column(name = "name")
     private String name; //< Event name
@@ -28,16 +33,20 @@ public class Event {
     @Column(name="description")
     private String description; //< Event Description
 
-    @Column(name="campaign")
+    @OneToOne 
+    @JoinColumn(name="campaignID")
     private Campaign campaign; //< Campaign associated to the event
 
-    @OneToMany 
+    @OneToMany
+    @JoinColumn(name="eventID")
     private Set<Event> events; //< Potential subevents to this event
 
-    @ManyToMany 
-    private Set<Character> characters; //< Characters involved with this event
+    @ManyToMany
+    @JoinColumn(name="characterID")
+    private Set<CharacterGame> characters; //< Characters involved with this event
 
-    @ManyToMany 
+    @ManyToMany
+    @JoinColumn(name="sessionID")
     private Set<Session> sessions; //< Sessions where this event appeared
     
     /**
@@ -62,8 +71,8 @@ public class Event {
      * Add a list of characters to the set of characters involved in the event
      * @param characters characters involved
      */
-    public void addChars(List<Character> characters) {
-        for (Character character : characters) {
+    public void addChars(List<CharacterGame> characters) {
+        for (CharacterGame character : characters) {
             this.characters.add(character);
         }
     }
@@ -72,8 +81,8 @@ public class Event {
      * Add a set of characters to the set of characters involved in the event
      * @param characters characters involved
      */
-    public void addChars(Set<Character> characters) {
-        for (Character character : characters) {
+    public void addChars(Set<CharacterGame> characters) {
+        for (CharacterGame character : characters) {
             this.characters.add(character);
         }
     }
@@ -82,7 +91,7 @@ public class Event {
      * Add a character to the set of characters involved in the event
      * @param character character involved
      */
-    public void addChars(Character character) {
+    public void addChars(CharacterGame character) {
         this.characters.add(character);
     }
 
@@ -100,7 +109,7 @@ public class Event {
      * Returns all the characters involved in the event
      * @return Set of characters involved in the event
      */
-    public Set<Character> getInvolved() {
+    public Set<CharacterGame> getInvolved() {
         return this.characters;
     }
 
@@ -111,11 +120,11 @@ public class Event {
     @Override 
     public String toString() {
         String str = "";
-        ArrayList<Character> tmp = new ArrayList<>();
+        ArrayList<CharacterGame> tmp = new ArrayList<>();
 
         str += "Event : " + this.name + "\n\nPlayed characters:\n";
 
-        for (Character character : this.characters) {
+        for (CharacterGame character : this.characters) {
             if (!character.getPlayer().equals(this.campaign.getGamemaster())) {
                 str += "- " + character.getName() + "\n";
             } else {
@@ -125,7 +134,7 @@ public class Event {
 
         str += "\nNon playable characters:\n";
 
-        for (Character character : tmp) {
+        for (CharacterGame character : tmp) {
             str += "- " + character.getName() + "\n";
         }
 
