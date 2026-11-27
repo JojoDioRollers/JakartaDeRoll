@@ -1,0 +1,56 @@
+/* Style général */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #212529;
+}
+
+/* Navigation */
+
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+/* Titres */
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+/* Cartes */
+
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons */
+
+.btn {
+    border-radius: 6px;
+}
+
+/* Formulaires */
+
+.form-control,
+.form-select {
+    border-radius: 6px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* Pied de page */
+
+footer {
+    margin-top: auto;
+}

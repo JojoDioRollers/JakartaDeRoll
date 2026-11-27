@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Campagnes - JakartaDeRoll</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container my-5 flex-grow-1">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h1>Campagnes</h1>
+
+            <p class="text-muted">
+                Retrouvez les campagnes de jeu de rôle.
+            </p>
+        </div>
+
+        <a th:href="@{/campaigns/create}" class="btn btn-primary">
+            Créer une campagne
+        </a>
+
+    </div>
+
+    <!-- Liste des campagnes -->
+    <div class="row g-4"
+         th:if="${campaigns != null and !campaigns.isEmpty()}">
+
+        <div class="col-md-6 col-lg-4"
+             th:each="campaign : ${campaigns}">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5 class="card-title"
+                        th:text="${campaign.name}">
+                        Nom de la campagne
+                    </h5>
+
+                    <p class="text-muted mb-2">
+                        Maître du jeu :
+
+                        <strong th:text="${campaign.gamemaster.name}">
+                            Nom du maître du jeu
+                        </strong>
+                    </p>
+
+                    <p class="card-text"
+                       th:text="${campaign.description}">
+                        Description de la campagne
+                    </p>
+
+                    <a th:href="@{/campaigns/{id}(id=${campaign.id})}"
+                       class="btn btn-outline-primary">
+                        Consulter
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Aucune campagne -->
+    <div class="alert alert-info"
+         th:if="${campaigns == null or campaigns.isEmpty()}">
+
+        Aucune campagne n'a encore été créée.
+
+        <a th:href="@{/campaigns/create}">
+            Créer la première campagne.
+        </a>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
