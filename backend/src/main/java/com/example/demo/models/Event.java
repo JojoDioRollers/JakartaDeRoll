@@ -64,7 +64,7 @@ public class Event {
      * @param session session to add
      */
     public void addSession(Session session) {
-        this.sessions.add(session);
+        // TODO with API
     }
 
     /**
@@ -72,9 +72,7 @@ public class Event {
      * @param characters characters involved
      */
     public void addChars(List<CharacterGame> characters) {
-        for (CharacterGame character : characters) {
-            this.characters.add(character);
-        }
+        // TODO with API
     }
 
     /**
@@ -82,9 +80,7 @@ public class Event {
      * @param characters characters involved
      */
     public void addChars(Set<CharacterGame> characters) {
-        for (CharacterGame character : characters) {
-            this.characters.add(character);
-        }
+        // TODO with API
     }
 
     /**
@@ -92,7 +88,7 @@ public class Event {
      * @param character character involved
      */
     public void addChars(CharacterGame character) {
-        this.characters.add(character);
+        // TODO with API
     }
 
     /**
@@ -102,7 +98,7 @@ public class Event {
      * The event is created in the method then added to the set of subevents
      */
     public void addEvent(String name) {
-        this.events.add(new Event(name, this.campaign));
+        // TODO with API
     }
 
     /**
